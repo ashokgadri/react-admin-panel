@@ -6,7 +6,7 @@ export const routes = [
   {
     path: "/",
     exact: true,
-    component: Home,
+    component: () => <Redirect to="/auth/login" />,
   },
   {
     path: "/auth",

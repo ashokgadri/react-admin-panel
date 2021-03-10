@@ -1,7 +1,9 @@
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import validate from "validate.js";
+import { authActions } from "../../actions";
 
 const constraints = {
   email: {
@@ -31,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LoginForm(props) {
-  const { className, ...rest } = props;
+  const {login, logout, className, ...rest } = props;
 
   const classes = useStyles();
 
@@ -44,7 +46,6 @@ function LoginForm(props) {
 
   useEffect(() => {
     const errors = validate(formState.values, constraints);
-    console.log(errors);
     setFormState((formState) => ({
       ...formState,
       isValid: errors ? false : true,
@@ -68,6 +69,7 @@ function LoginForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    login(formState.values.email, formState.values.password)
   };
 
   const hasError = (field) =>
@@ -118,4 +120,10 @@ function LoginForm(props) {
   );
 }
 
-export default LoginForm;
+const mapStateToProps = null;
+const mapDispatchToProps = {
+    login: authActions.login,
+    logout: authActions.logout
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
