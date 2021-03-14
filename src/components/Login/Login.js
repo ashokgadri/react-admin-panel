@@ -1,5 +1,7 @@
 import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import React from "react";
+import { useSelector } from "react-redux";
 import { LoginForm } from "../LoginForm";
 import { Page } from "../Page";
 
@@ -14,10 +16,16 @@ const useStyles = makeStyles((theme) => ({
   loginForm: {
     marginTop: theme.spacing(3),
   },
+  alert: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 function Login() {
   const classes = useStyles();
+
+  const auth = useSelector((state) => state.auth);
+
   return (
     <Page title="Login" className={classes.root}>
       <Card>
@@ -25,6 +33,12 @@ function Login() {
           <Typography gutterBottom variant="h3">
             Log In
           </Typography>
+          {auth.error && (
+            <Alert severity="error" className={classes.alert}>
+              {auth.error.message || auth.error}
+            </Alert>
+          )}
+
           <LoginForm className={classes.loginForm} />
         </CardContent>
       </Card>

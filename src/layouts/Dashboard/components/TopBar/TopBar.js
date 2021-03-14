@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -37,6 +38,8 @@ function TopBar(props) {
       setAnchorEl(event.currentTarget);
   };
 
+  const auth = useSelector(state => state.auth)
+
   return (
     <AppBar {...rest} className={clsx(classes.root, className)} color="primary">
       <Toolbar>
@@ -44,7 +47,7 @@ function TopBar(props) {
         <Typography variant="h5" color="inherit" style={{paddingLeft: '10px'}}>React Admin Panel</Typography>
         <div className={classes.flexGrow} />
         <Button color="inherit" variant="outlined" onClick={handleMenuOpen}>
-          Ashok Gadri
+          {auth.user && `${auth.user.name}`}
         </Button>
         <Menu open={Boolean(anchorEl)} onClose={handleMenuClose} anchorEl={anchorEl}>
           <MenuItem>Profile</MenuItem>

@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LoginForm(props) {
-  const {login, logout, className, ...rest } = props;
+  const { login, logout, className, ...rest } = props;
 
   const classes = useStyles();
 
@@ -44,6 +44,9 @@ function LoginForm(props) {
     errors: {},
   });
 
+  useEffect(() => {
+    logout();
+  }, []);
   useEffect(() => {
     const errors = validate(formState.values, constraints);
     setFormState((formState) => ({
@@ -69,7 +72,7 @@ function LoginForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(formState.values.email, formState.values.password)
+    login(formState.values.email, formState.values.password);
   };
 
   const hasError = (field) =>
@@ -122,8 +125,8 @@ function LoginForm(props) {
 
 const mapStateToProps = null;
 const mapDispatchToProps = {
-    login: authActions.login,
-    logout: authActions.logout
+  login: authActions.login,
+  logout: authActions.logout,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
