@@ -45,7 +45,7 @@ function LoginForm(props) {
   });
 
   useEffect(() => {
-    logout();
+    //logout();
   }, []);
   useEffect(() => {
     const errors = validate(formState.values, constraints);
