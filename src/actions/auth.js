@@ -17,7 +17,7 @@ function login(username, password) {
     })
     .catch(error => {
         if(error.response){
-            dispatch(failure(error.response.statusText));
+            dispatch(failure(error.response.data.message || error.response.statusText));
         }
         else{
             dispatch(failure(error))
