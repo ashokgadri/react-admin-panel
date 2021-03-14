@@ -11,6 +11,7 @@ function login(username, password) {
   return (dispatch) => {
     dispatch(request(username));
     authService.login(username, password).then(response => {
+      console.log(response);
         dispatch(success(response.user));
         history.push('/');
     })

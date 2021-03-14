@@ -9,12 +9,13 @@ export const authService = {
 function login(username, password) {
   return axios
     .post(urlConstants.LOGIN, {
-      username,
+      email: username,
       password,
     })
-    .then((user) => {
-      localStorage.setItem("user", JSON.stringify(user));
-      return user;
+    .then(response => {
+      console.log(response);
+      localStorage.setItem("user", JSON.stringify(response.data));
+      return response.data;
     });
 }
 

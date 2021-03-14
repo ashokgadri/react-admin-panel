@@ -1,7 +1,12 @@
 import { authConstants } from "../constants";
 
 let user = JSON.parse(localStorage.getItem("user"));
-const initialState = user ? { loggedIn: true, user } : {};
+const initialState = {
+  user,
+  loggedIn: user ? true : false,
+  error: null,
+};
+
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case authConstants.LOGIN_REQUEST:
@@ -15,7 +20,9 @@ export const authReducer = (state = initialState, action) => {
         user: action.user,
       };
     case authConstants.LOGIN_FAILURE:
-      return {};
+      return {
+        error: action.error
+      };
     case authConstants.LOGOUT:
       return {};
     default:
