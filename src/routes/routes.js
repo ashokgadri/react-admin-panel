@@ -1,6 +1,7 @@
 import { Redirect } from "react-router";
 import { Home } from "../components/Home";
 import { Login } from "../components/Login";
+import Table from "../components/Table";
 import AuthLayout from "../layouts/Auth";
 import DashboardLayout from '../layouts/Dashboard';
 
@@ -31,6 +32,11 @@ export const routes = [
         component: (props) => {return props.isAuthenticated ? <Home /> : <Redirect to="/auth/login" />}
           ,
       },
+      {
+        path:"/table",
+        exact: true,
+        component: (props) => {return props.isAuthenticated ? <Table /> : <Redirect to="/auth/login" />}
+      }
     ]
   }
 ];

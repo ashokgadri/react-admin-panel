@@ -13,6 +13,7 @@ import clsx from "clsx";
 import React from "react";
 import { Fragment } from "react";
 import AppsIcon from "@material-ui/icons/Apps";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,9 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function NavBar(props) {
   const { openMenu, closeMenu, className, ...rest } = props;
   const classes = useStyles();
+
   return (
     <Fragment>
       <Hidden lgUp>
@@ -50,18 +53,18 @@ function NavBar(props) {
           square
         >
           <List>
-            <ListItem>
+            <ListItem component={Link} to="/">
               <ListItemIcon>
                 <Home />
               </ListItemIcon>
               <ListItemText>Home</ListItemText>
             </ListItem>
-            <ListItem>
+            <ListItem component={Link} to="/table">
               <ListItemIcon>
                 <AppsIcon />
               </ListItemIcon>
-              <ListItemText>Data Table</ListItemText>
-            </ListItem>{" "}
+              <ListItemText>Table</ListItemText>
+            </ListItem>
           </List>
         </Paper>
       </Hidden>
