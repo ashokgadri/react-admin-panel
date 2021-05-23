@@ -40,6 +40,10 @@ function Login() {
           )}
 
           <LoginForm className={classes.loginForm} />
+          <Typography gutterBottom variant="p">
+            Username: test@gmail.com<br></br>
+            Password: Pass$%^789
+          </Typography>
         </CardContent>
       </Card>
     </Page>
