@@ -1,6 +1,6 @@
 import axios from "axios"; 
 const instance = axios.create({
-    baseURL: 'http://localhost:8000',
+    baseURL: 'https://react-admin-panel-api.herokuapp.com',
     withCredentials: true
 });
 export default instance;
